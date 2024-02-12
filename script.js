@@ -46,6 +46,10 @@ function generatePassword(upper, lower, number, symbol, length) {
             return ''
         }
 
+        if(length > 20) {
+            return ''
+        }
+
         for(let i = 0; i < length; i+=typesCount){
             typesArray.forEach(type => {
                 const funcName = Object.keys(type)[0]
@@ -55,7 +59,7 @@ function generatePassword(upper, lower, number, symbol, length) {
 
         const finalPassword = geenratedPassword.slice(0, length)
         const arr = finalPassword.split('')
-        for(let i = 0; i < arr.length; i++) {
+        for(let i = arr.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * i);
             [arr[i], arr[j]] = [arr[j], arr[i]];
             return arr.join('')
